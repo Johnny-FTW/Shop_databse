@@ -13,6 +13,13 @@ from services.ProductService import create_product_service
 create_tables(engine,metadata)
 
 
+def create_product(data: Product):
+    try:
+        create_product_service(data)
+    except Exception as e:
+        print(e)
+
+
 def create_customer(data: RegisterRequest):
     try:
         customer_id = create_customer_service(data)
@@ -37,16 +44,20 @@ def create_order(data: Order):
 
 
 
+# new_product = Product(product_name="Bread",price=50)
+#
+# create_product(new_product)
+# create_product(new_product)
 
-new_customer = Customer(first_name="Jan",last_name = "Hatapka", email="jan.hatapka@gmail.com",password="123456",address="Ul.29.augusta28/c",postcode="81109",country = "Slovakia")
+new_customer = Customer(first_name="Jan",last_name = "Hatapka", email="jan.hatapka@gmail.com",password="Aa123456",address="Ul.29.augusta28/c",postcode="81109",country = "Slovakia")
 
 customer_id = create_customer(new_customer)
+#
+# login_data = LoginRequest(email="jan.hatapka@gmail.com", password="123456")
+#
+# login(login_data)
 
-login_data = LoginRequest(email="jan.hatapka@gmail.com", password="123456")
-
-login(login_data)
-
-
+########################################
 # new_customer2 = Customer(first_name="Peter",last_name = "Hrinko", email="jan.hatapka@gmail.com",password="123456",address="Ul.29.augusta28/c",postcode="81109",country = "Slovakia")
 #
 # create_customer_service(new_customer)
@@ -80,6 +91,7 @@ login(login_data)
 #
 # print(show_order(2))
 # print(show_total_price(2))
+
 
 
 
