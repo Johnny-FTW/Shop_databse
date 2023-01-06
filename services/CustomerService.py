@@ -1,6 +1,7 @@
 import bcrypt
 from sqlalchemy import insert
 from db import connection
+from errors.WeakPassword import WeakPassword
 from model.Customer import customer_table, customer_password_table
 from requests import RegisterRequest
 import re
@@ -8,7 +9,6 @@ import re
 
 def check_validity_password(password):
     validity_password = True
-
     if  len(password) < 6:
         validity_password = False
     elif not re.search("[a-z]", password):
@@ -50,6 +50,8 @@ def create_customer_service(data: RegisterRequest):
             return new_customer_id
         else:
             connection.rollback()
+            raise WeakPassword("Password is weak")
+
 
     except Exception as e:
         print(e)

@@ -49,7 +49,7 @@ def create_order(data: Order):
 # create_product(new_product)
 # create_product(new_product)
 
-new_customer = Customer(first_name="Jan",last_name = "Hatapka", email="jan.hatapka@gmail.com",password="Aa123456",address="Ul.29.augusta28/c",postcode="81109",country = "Slovakia")
+new_customer = Customer(first_name="Jan",last_name = "Hatapka", email="jan.hatapka@gmail.com",password="23123456",address="Ul.29.augusta28/c",postcode="81109",country = "Slovakia")
 
 customer_id = create_customer(new_customer)
 #
