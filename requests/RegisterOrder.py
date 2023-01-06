@@ -3,7 +3,7 @@ class Order:
         self.customer_id = customer_id
 
 
-class OrderDetail:
+class OrderItem:
     def __init__(self, order_id, quantity, product_id):
         self.order_id = order_id
         self.quantity = quantity

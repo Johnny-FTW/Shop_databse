@@ -13,6 +13,9 @@ customer_table = Table(
     Column("customer_id", Integer, primary_key=True),
     Column("first_name", Text, nullable=False),
     Column("last_name", Text, nullable=False),
+    Column("email", Text, nullable=False),
+    Column("address", Text, nullable=False),
+    Column("postcode", Text,nullable=False),
     Column("country", Text, nullable=False),
 )
 

@@ -10,6 +10,9 @@ def create_customer_service(data: RegisterRequest):
             .values(
             first_name = data.first_name,
             last_name = data.last_name,
+            email = data.email,
+            address = data.address,
+            postcode=data.postcode,
             country = data.country
         )
         connection.execute(query)

@@ -1,7 +1,7 @@
 from typing import List
 from sqlalchemy import insert, select, join, func
 from db import connection
-from model.Order import orders_table, order_detail_ID_table
+from model.Order import orders_table, order_items_table
 from model.Product import product_table
 from requests import RegisterOrder
 
@@ -23,7 +23,7 @@ def create_order_service(data: RegisterOrder):
 
 def create_order_service_detail(data: RegisterOrder):
     try:
-        query = insert(order_detail_ID_table)\
+        query = insert(order_items_table)\
             .values(
             order_id= data.order_id,
             quantity = data.quantity,
@@ -46,10 +46,10 @@ def create_order_service_detail(data: RegisterOrder):
 
 
 def show_order(order_id: int) -> List[dict]:
-    query = select( product_table.c.product_name,order_detail_ID_table.c.quantity, product_table.c.price,
-                    (product_table.c.price*order_detail_ID_table.c.quantity).label("total"))\
-        .select_from(join(order_detail_ID_table, product_table))\
-        .where(order_detail_ID_table.c.order_id == order_id)
+    query = select( product_table.c.product_name,order_items_table.c.quantity, product_table.c.price,
+                    (product_table.c.price*order_items_table.c.quantity).label("total"))\
+        .select_from(join(order_items_table, product_table))\
+        .where(order_items_table.c.order_id == order_id)
     result = connection.execute(query)
     return result.fetchall()
 
@@ -61,10 +61,10 @@ def show_order(order_id: int) -> List[dict]:
 # group by order_id;
 
 def show_total_price(order_id: int):
-    query = select(func.sum(product_table.c.price*order_detail_ID_table.c.quantity).label("total_price")) \
-        .select_from(join(order_detail_ID_table, product_table))\
-        .where(order_detail_ID_table.c.order_id == order_id)\
-        .group_by(order_detail_ID_table.c.order_id)
+    query = select(func.sum(product_table.c.price*order_items_table.c.quantity).label("total_price")) \
+        .select_from(join(order_items_table, product_table))\
+        .where(order_items_table.c.order_id == order_id)\
+        .group_by(order_items_table.c.order_id)
     result = connection.execute(query)
     return result.fetchone()
 

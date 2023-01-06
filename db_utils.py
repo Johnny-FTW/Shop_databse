@@ -1,6 +1,6 @@
 from dotenv import dotenv_values
 from model.Customer import customer_table
-from model.Order import orders_table, order_detail_ID_table
+from model.Order import orders_table, order_items_table
 from model.Product import product_table
 
 config = dotenv_values("./.env")
@@ -14,5 +14,5 @@ def create_tables(engine, metadata):
 
 # customer_table
 # orders_table
-# order_detail_ID_table
+# order_items_table
 # product_table

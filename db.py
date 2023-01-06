@@ -13,7 +13,7 @@ def db_connect():
 
     engine = create_engine(
         f"postgresql+psycopg2://{username}:{password}@localhost:5432/{dbname}",
-        echo=True,
+        echo=False,
         future=True,
     )
 

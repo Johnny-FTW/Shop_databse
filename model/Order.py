@@ -21,10 +21,10 @@ orders_table = Table(
 )
 
 
-order_detail_ID_table = Table(
-    "orders_details_IDs",
+order_items_table = Table(
+    "order_items",
     metadata,
-    Column("order_detail_id", Integer, primary_key=True),
+    Column("order_item_id", Integer, primary_key=True),
     Column("order_id", Integer, ForeignKey(orders_table.c.order_id, ondelete="CASCADE", onupdate="CASCADE"),
            nullable=False),
     Column("quantity", Integer, nullable=False),
